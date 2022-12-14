@@ -56,11 +56,7 @@ public class CheckerState extends BoardState {
 		return null;
 	}
 
-	@Override
-	public List<BoardState> getChildList(Player player) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public BoardState clone() throws CloneNotSupportedException {
@@ -100,6 +96,38 @@ public class CheckerState extends BoardState {
 		}	
 		
 		return sb.toString();
+	}
+
+	public BoardState move(BoardState boardStateN,int currentStoneIndex, int moveIndex, Player player)
+	{//Recursive olacak
+		BoardState boardState_= boardStateN;
+
+		
+
+		return boardState_;
+	}
+
+	@Override
+	public List<BoardState> getChildList(Player player , int currentStoneIndex)
+	{
+		List<BoardState> children = new ArrayList<BoardState>();
+
+		CellState playerState = (player == Player.One ? CellState.X : CellState.O);
+
+		if(playerState == CellState.O)//AI
+		{
+			if(boardState[(currentStoneIndex/boardSize)][(currentStoneIndex % boardSize)-1] == null)
+			{//left move
+
+			}
+			
+			else if(boardState[(currentStoneIndex/boardSize)-1][(currentStoneIndex % boardSize)] == null)
+			{//up move
+
+			}
+		}
+
+		return children;
 	}
 
 }
