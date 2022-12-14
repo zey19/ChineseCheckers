@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 
-enum CellState {X, O};
+enum CellState {X, O, N, W};
 
 public class CheckerState extends BoardState {
 
@@ -14,10 +14,10 @@ public class CheckerState extends BoardState {
 	
 	CheckerState(int boardSize) 
 	{			
-		boardSize = Math.max(boardSize, 3);
-		this.boardSize = boardSize;
+		this.boardSize = Math.max(boardSize, 3);
+	
 
-		boardState = new CellState[boardSize][boardSize];
+		this.boardState = new CellState[boardSize][boardSize];
 	}
 	
 	CheckerState(CheckerState state)
@@ -65,7 +65,41 @@ public class CheckerState extends BoardState {
 	@Override
 	public BoardState clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
-		return null;
+		return new CheckerState(this);
+		
+	}
+
+	@Override
+    boolean set(int x, int y, Player player)
+    {
+    	if (x>=0 && x<boardSize && y>=0 && y<boardSize && boardState[y][x] == null) {
+    		boardState[y][x] = (player == Player.One ? CellState.X : CellState.O);
+    				
+    		return true;
+    	}
+    	else
+    		return false;
+    }
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		for (int y=0; y<boardSize; y++) {
+			for (int x=0; x<boardSize; x++) {
+				if (boardState[y][x] == null)
+					sb.append(".");
+				else {
+					if (boardState[y][x] == CellState.W)
+						sb.append("=");
+					else
+						sb.append(boardState[y][x].toString());
+				}
+			}
+			sb.append('\n');
+		}	
+		
+		return sb.toString();
 	}
 
 }

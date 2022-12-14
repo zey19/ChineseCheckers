@@ -15,5 +15,7 @@ public abstract class BoardState implements Cloneable {
 	abstract public List<BoardState> getChildList(Player player);
 		
 	abstract public BoardState clone() throws CloneNotSupportedException;
+
+	abstract boolean set(int x, int y, Player player);
 }
 

@@ -1,7 +1,9 @@
+import javax.lang.model.util.ElementScanner14;
+
 public class CheckerBoard {
 	
 	public static void main(String args[]) {
-		int boardSize = 6;
+		int boardSize = 8;
 		
 		CheckerState board = new CheckerState(boardSize);
 		
@@ -9,20 +11,19 @@ public class CheckerBoard {
 			for (int x=0; x<boardSize; x++) {
 				if((y==0|| y==1 || y==2) && (x==0 || x==1 || x==2))
 				{
-					System.out.print("x ");
+					board.set(x, y, Player.One);
 				}
 				else if ((y==boardSize-1|| y==boardSize-2 || y==boardSize-3) && (x==boardSize-1 || x==boardSize-2 || x==boardSize-3))
 				{
-					System.out.print("o ");
-				}
-				else {
-					System.out.print((y * boardSize + x) + " ");
+					board.set(x, y, Player.Two);
 				}
 				
+				
+				
 			}
-			System.out.println();
+			
 		}
-		System.out.println();
+		System.out.println(board);
 
 	}
 }
